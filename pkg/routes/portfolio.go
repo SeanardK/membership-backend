@@ -5,15 +5,15 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func setupPortfolioRoutes(RouterGroup *gin.RouterGroup) {
+func setupPortfolioRoutes(RouterGroup *gin.RouterGroup, auth gin.HandlerFunc) {
 	portfolioController := &controller.PortfolioController{}
 
 	portfolioRoutes := RouterGroup.Group("/portfolio")
 	{
-		portfolioRoutes.POST("/", portfolioController.Create)
+		portfolioRoutes.POST("/", auth, portfolioController.Create)
 		portfolioRoutes.GET("/", portfolioController.GetAll)
 		portfolioRoutes.GET("/:id", portfolioController.GetById)
-		portfolioRoutes.DELETE("/:id", portfolioController.DeleteById)
-		portfolioRoutes.PATCH("/:id", portfolioController.UpdateById)
+		portfolioRoutes.DELETE("/:id", auth, portfolioController.DeleteById)
+		portfolioRoutes.PATCH("/:id", auth, portfolioController.UpdateById)
 	}
 }
