@@ -1,0 +1,8 @@
+basic
+gin
+
+# Temporary files
+tmp
+
+# ENV files
+.env
