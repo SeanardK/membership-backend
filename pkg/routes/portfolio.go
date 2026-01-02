@@ -10,8 +10,8 @@ func setupPortfolioRoutes(RouterGroup *gin.RouterGroup, auth gin.HandlerFunc) {
 
 	portfolioRoutes := RouterGroup.Group("/portfolio")
 	{
-		portfolioRoutes.POST("/", auth, portfolioController.Create)
-		portfolioRoutes.GET("/", portfolioController.GetAll)
+		portfolioRoutes.POST("", auth, portfolioController.Create)
+		portfolioRoutes.GET("", portfolioController.GetAll)
 		portfolioRoutes.GET("/:id", portfolioController.GetById)
 		portfolioRoutes.DELETE("/:id", auth, portfolioController.DeleteById)
 		portfolioRoutes.PATCH("/:id", auth, portfolioController.UpdateById)

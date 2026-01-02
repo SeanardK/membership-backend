@@ -11,6 +11,7 @@ import (
 	"github.com/SeanardK/web-profile/pkg/middleware"
 	"github.com/SeanardK/web-profile/pkg/routes"
 	"github.com/SeanardK/web-profile/pkg/utils"
+	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
 	"github.com/sirupsen/logrus"
@@ -45,6 +46,19 @@ func main() {
 	database.AutoMigrate()
 
 	router := gin.Default()
+
+	router.Static("/public", "./public")
+
+	router.Use(cors.New(cors.Config{
+		AllowAllOrigins:  true,
+		AllowMethods:     []string{"GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
+		ExposeHeaders:    []string{"Content-Length"},
+		AllowCredentials: false,
+		MaxAge:           12 * 3600,
+	}))
+
+	router.MaxMultipartMemory = 8 << 20
 
 	routes.SetupRoutes(router, auth.Middleware())
 

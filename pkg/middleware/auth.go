@@ -27,7 +27,10 @@ func New(ctx context.Context, issuer, clientID string) (*OIDCAuth, error) {
 		return nil, err
 	}
 
-	verifier := provider.Verifier(&oidc.Config{ClientID: clientID})
+	verifier := provider.Verifier(&oidc.Config{
+		ClientID:          clientID,
+		SkipClientIDCheck: true,
+	})
 
 	return &OIDCAuth{verifier: verifier}, nil
 }

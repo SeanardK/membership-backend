@@ -6,3 +6,6 @@ tmp
 
 # ENV files
 .env
+
+# Static Images
+public/portfolio/images/*
