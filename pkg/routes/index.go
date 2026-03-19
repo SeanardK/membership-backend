@@ -7,6 +7,7 @@ import (
 func SetupRoutes(router *gin.Engine, authMiddleware gin.HandlerFunc) {
 	var RouterGroup = router.Group("/")
 	{
+		setupAuthRoutes(RouterGroup)
 		setupPortfolioRoutes(RouterGroup, authMiddleware)
 	}
 }
