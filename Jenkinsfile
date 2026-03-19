@@ -4,7 +4,7 @@ pipeline {
   stages {
     stage('Prepare .env') {
       steps {
-        withCredentials([file(credentialsId: 'backend_template-go', variable: 'ENV_FILE')]) {
+        withCredentials([file(credentialsId: 'backend_template-go-env', variable: 'ENV_FILE')]) {
           sh 'rm -f .env && cp $ENV_FILE .env'
         }
       }
