@@ -10,7 +10,7 @@ func AutoMigrate() {
 	db := config.GetDB()
 
 	err := db.AutoMigrate(
-		&model.Portfolio{},
+		&model.Stamp{},
 	)
 
 	if err != nil {
