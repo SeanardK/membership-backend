@@ -1,13 +1,15 @@
-# Go Backend API template
+# Membership Backend
 
-A robust RESTful API backend service for managing portfolio projects, built with Go and designed for modern web applications. Features secure authentication, image upload capabilities, and full CRUD operations for portfolio management.
+A robust and scalable Go-based REST API backend for digital membership and loyalty program management. Track customer transactions, award stamp-based rewards, and manage redemptions.
+
+Membership Backend provides a comprehensive backend solution for businesses looking to implement a digital stamp card loyalty program. Customers earn stamps through transactions with sellers, and can redeem accumulated stamps for rewards. Creating an engaging and rewarding customer experience.
 
 ## Quick Start
 
 ```bash
 # Clone the repository
-git clone https://github.com/SeanardK/go-backend-template
-cd go-backend-template
+git clone https://github.com/SeanardK/membership-backend.git
+cd membership-backend
 
 # Copy environment file and configure
 cp .env.example .env
