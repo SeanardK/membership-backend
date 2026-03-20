@@ -2,16 +2,11 @@ package controller
 
 import (
 	"net/http"
-	"time"
 
 	connection "github.com/SeanardK/web-profile/pkg/config"
 	"github.com/SeanardK/web-profile/pkg/model"
 	"github.com/gin-gonic/gin"
 )
-
-func parseDate(s string) (time.Time, error) {
-	return time.Parse("2006-01-02", s)
-}
 
 type StampController struct {
 }
@@ -27,15 +22,8 @@ func (sc *StampController) Create(context *gin.Context) {
 		return
 	}
 
-	earnedDate, err := parseDate(req.EarnedDate)
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "Invalid earned_date format, use YYYY-MM-DD"})
-		return
-	}
-
 	stamp := model.Stamp{
 		UserID:     req.UserID,
-		EarnedDate: earnedDate,
 	}
 
 	db := connection.GetDB()
@@ -106,14 +94,7 @@ func (sc *StampController) UpdateById(context *gin.Context) {
 		return
 	}
 
-	earnedDate, err := parseDate(req.EarnedDate)
-	if err != nil {
-		context.JSON(http.StatusBadRequest, gin.H{"message": "Invalid earned_date format, use YYYY-MM-DD"})
-		return
-	}
-
 	stamp.UserID = req.UserID
-	stamp.EarnedDate = earnedDate
 
 	if err := db.Save(&stamp).Error; err != nil {
 		context.JSON(http.StatusInternalServerError, gin.H{"message": "Failed to update stamp", "error": err.Error()})

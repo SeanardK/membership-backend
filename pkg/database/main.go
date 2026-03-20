@@ -11,6 +11,7 @@ func AutoMigrate() {
 
 	err := db.AutoMigrate(
 		&model.Stamp{},
+		&model.Redemption{},
 	)
 
 	if err != nil {
