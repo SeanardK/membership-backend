@@ -9,5 +9,6 @@ func SetupRoutes(router *gin.Engine, authMiddleware gin.HandlerFunc) {
 	{
 		setupAuthRoutes(RouterGroup)
 		setupStampRoutes(RouterGroup, authMiddleware)
+		setupRedemptionRoutes(RouterGroup, authMiddleware)
 	}
 }
